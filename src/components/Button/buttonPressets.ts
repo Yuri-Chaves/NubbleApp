@@ -1,6 +1,6 @@
-import {ButtonPresset} from '.';
+import {ButtonPresset} from './Button';
 import {ThemeColors} from '../../theme/theme';
-import {TouchableHighlightProps} from '../Box';
+import {TouchableHighlightProps} from '../Box/Box';
 
 interface ButtonUI {
   container: TouchableHighlightProps;

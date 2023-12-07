@@ -1,7 +1,6 @@
 import React from 'react';
 import {ActivityIndicator} from 'react-native';
-import {Text} from '../Text';
-import {ThouchableHighlightBox, TouchableHighlightProps} from '../Box';
+import { Text, ThouchableHighlightBox, TouchableHighlightProps} from '@components';
 import {buttonPressets} from './buttonPressets';
 
 interface ButtonProps extends TouchableHighlightProps {

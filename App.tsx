@@ -7,9 +7,9 @@
 
 import React from 'react';
 import {SafeAreaView} from 'react-native';
-import {Text} from './src/components/Text';
+import {Icon, Text} from '@components';
 import {ThemeProvider} from '@shopify/restyle';
-import {theme} from './src/theme/theme';
+import {theme} from '@theme';
 function App(): JSX.Element {
   return (
     <ThemeProvider theme={theme}>
@@ -17,6 +17,7 @@ function App(): JSX.Element {
         <Text preset="headingLarge" style={{fontSize: 32, color: 'red'}}>
           Hello Word!
         </Text>
+        <Icon name='arrowLeft' />
       </SafeAreaView>
     </ThemeProvider>
   );
