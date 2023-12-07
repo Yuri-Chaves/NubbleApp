@@ -14,7 +14,7 @@ function App(): JSX.Element {
   return (
     <ThemeProvider theme={theme}>
       <SafeAreaView>
-        <Text preset="headingLarge" style={{fontSize: 32, color: 'red'}}>
+        <Text preset="headingLarge" color='carrotSecondary' style={{fontSize: 32}}>
           Hello Word!
         </Text>
         <Icon name='arrowLeft' />
