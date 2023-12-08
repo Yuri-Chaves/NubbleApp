@@ -6,20 +6,17 @@
  */
 
 import React from 'react';
-import {SafeAreaView} from 'react-native';
-import {Icon, Text} from '@components';
 import {ThemeProvider} from '@shopify/restyle';
 import {theme} from '@theme';
+import {LoginScreen} from 'src/screens/auth/Login/LoginScreen';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 function App(): JSX.Element {
   return (
-    <ThemeProvider theme={theme}>
-      <SafeAreaView>
-        <Text preset="headingLarge" color='carrotSecondary' style={{fontSize: 32}}>
-          Hello Word!
-        </Text>
-        <Icon name='arrowLeft' />
-      </SafeAreaView>
-    </ThemeProvider>
+    <SafeAreaProvider>
+      <ThemeProvider theme={theme}>
+        <LoginScreen />
+      </ThemeProvider>
+    </SafeAreaProvider>
   );
 }
 
