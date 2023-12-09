@@ -10,8 +10,10 @@ import {
   Chat,
   ChatOn,
   Check,
+  CheckRound,
   ChevronRight,
   Comment,
+  ErrorRound,
   EyeOff,
   EyeOn,
   FlashOff,
@@ -21,6 +23,7 @@ import {
   Home,
   HomeFill,
   Message,
+  MessageRound,
   NewPost,
   Profile,
   ProfileFill,
@@ -37,7 +40,7 @@ export interface IconBase {
   color?: string;
 }
 
-interface Props {
+export interface IconProps {
   name: IconName;
   size?: number;
   color?: ThemeColors;
@@ -49,7 +52,7 @@ export function Icon({
   size,
   color = 'backgroundContrast',
   onPress,
-}: Props) {
+}: IconProps) {
   const {colors} = useAppTheme();
   const SVCIcon = iconRegistry[name];
   if (onPress) {
@@ -73,8 +76,10 @@ const iconRegistry = {
   chat: Chat,
   chatOn: ChatOn,
   check: Check,
+  checkRound: CheckRound,
   chevronRight: ChevronRight,
   comment: Comment,
+  errorRound: ErrorRound,
   eyeOff: EyeOff,
   eyeOn: EyeOn,
   flashOff: FlashOff,
@@ -84,6 +89,7 @@ const iconRegistry = {
   home: Home,
   homeFill: HomeFill,
   message: Message,
+  messageRound: MessageRound,
   newPost: NewPost,
   profile: Profile,
   profileFill: ProfileFill,

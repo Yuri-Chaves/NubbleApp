@@ -5,6 +5,7 @@ import {Icon} from '../Icon/Icon';
 import {Text} from '../Text/Text';
 import {KeyboardAvoidingView, Platform, ScrollView} from 'react-native';
 import {ScrollViewContainer, ViewContainer} from './components/ScreenContainer';
+import {useNavigation} from '@react-navigation/native';
 
 interface ScreenProps {
   children: React.ReactNode;
@@ -22,6 +23,7 @@ export function Screen({
 
   const Container = scrollable ? ScrollViewContainer : ViewContainer;
 
+  const navigation = useNavigation();
   return (
     <KeyboardAvoidingView
       style={{flex: 1}}
@@ -32,7 +34,11 @@ export function Screen({
           style={{paddingTop: top, paddingBottom: bottom}}>
           {canGoBack && (
             <Box mb="s24" flexDirection="row">
-              <Icon name="arrowLeft" color="primary" />
+              <Icon
+                onPress={navigation.goBack}
+                name="arrowLeft"
+                color="primary"
+              />
               <Text preset="paragraphMedium" semiBold ml="s8">
                 Voltar
               </Text>

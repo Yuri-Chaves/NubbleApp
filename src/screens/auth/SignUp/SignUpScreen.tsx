@@ -1,9 +1,24 @@
-import {Button, Icon, Screen, Text, TextInput} from '@components';
+import {Button, PasswordInput, Screen, Text, TextInput} from '@components';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
+import {StackParamList} from '@routes';
+import {useResetNavigationSuccess} from '@hooks';
 
-export function SignUpScreen() {
+type ScreenProps = NativeStackScreenProps<StackParamList, 'SignUpScreen'>;
+
+export function SignUpScreen({navigation}: ScreenProps) {
+  const {reset} = useResetNavigationSuccess();
+
   function submitForm() {
     // TODO:
+    reset({
+      title: 'Sua conta foi criada com sucesso',
+      description: 'Agora é só fazer login na nossa plataforma',
+      icon: {
+        name: 'checkRound',
+        color: 'greenSuccess',
+      },
+    });
   }
   return (
     <Screen canGoBack scrollable>
@@ -21,10 +36,9 @@ export function SignUpScreen() {
         placeholder="Digite seu e-mail"
         boxProps={{mb: 's20'}}
       />
-      <TextInput
+      <PasswordInput
         label="Senha"
         placeholder="Digite sua senha"
-        rightComponent={<Icon color="gray2" name="eyeOn" />}
         boxProps={{mb: 's48'}}
       />
       <Button title="Criar uma conta" onPress={submitForm} />
