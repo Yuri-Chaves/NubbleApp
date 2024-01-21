@@ -1,12 +1,37 @@
-import {Box, Button, Icon, Screen, Text, TextInput} from '@components';
+import {
+  Box,
+  Button,
+  FormTextInput,
+  Icon,
+  PasswordInput,
+  Screen,
+  Text,
+  TextInput,
+} from '@components';
 import React from 'react';
 
 import {StackParamList} from '@routes';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {Controller, useForm} from 'react-hook-form';
+import {zodResolver} from '@hookform/resolvers/zod';
+import {LoginSchema, LoginSchemaType} from './LoginSchema';
+import {Alert} from 'react-native';
 
 type ScreenProps = NativeStackScreenProps<StackParamList, 'LoginScreen'>;
 
 export function LoginScreen({navigation}: ScreenProps) {
+  const {control, formState, handleSubmit} = useForm<LoginSchemaType>({
+    resolver: zodResolver(LoginSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+    mode: 'onChange',
+  });
+
+  function submitForm({email, password}: LoginSchemaType) {
+    Alert.alert(email, password);
+  }
   return (
     <Screen>
       <Box paddingHorizontal="s24">
@@ -16,15 +41,18 @@ export function LoginScreen({navigation}: ScreenProps) {
         <Text preset="paragraphLarge" mb="s40">
           Digite seu e-mai e senha para entrar
         </Text>
-        <TextInput
+        <FormTextInput
+          control={control}
+          name="email"
           label="E-mail"
           placeholder="Digite seu e-mail"
           boxProps={{mb: 's20'}}
         />
-        <TextInput
+        <FormTextInput
+          control={control}
+          name="password"
           label="Senha"
           placeholder="Digite sua senha"
-          rightComponent={<Icon color="gray2" name="eyeOff" />}
           boxProps={{
             mb: 's10',
           }}
@@ -36,7 +64,12 @@ export function LoginScreen({navigation}: ScreenProps) {
           bold>
           Esqueci minha senha
         </Text>
-        <Button title="Entrar" mt="s48" />
+        <Button
+          title="Entrar"
+          mt="s48"
+          disabled={!formState.isValid}
+          onPress={handleSubmit(submitForm)}
+        />
         <Button
           onPress={() => navigation.navigate('SignUpScreen')}
           title="Criar conta"
