@@ -1,6 +1,7 @@
-import {ButtonPresset} from './Button';
-import {ThemeColors} from '../../theme/theme';
-import {TouchableHighlightProps} from '../Box/Box';
+import { ThemeColors } from '../../theme/theme';
+import { TouchableHighlightProps } from '../Box/Box';
+
+import { ButtonPresset } from './Button';
 
 interface ButtonUI {
   container: TouchableHighlightProps;
@@ -9,7 +10,7 @@ interface ButtonUI {
 
 export const buttonPressets: Record<
   ButtonPresset,
-  {default: ButtonUI; disabled: ButtonUI}
+  { default: ButtonUI; disabled: ButtonUI }
 > = {
   primary: {
     default: {

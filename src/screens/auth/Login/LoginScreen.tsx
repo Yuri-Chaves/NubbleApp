@@ -1,3 +1,11 @@
+import React from 'react';
+import { Alert } from 'react-native';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { StackParamList } from '@routes';
+import { Controller, useForm } from 'react-hook-form';
+
 import {
   Box,
   Button,
@@ -8,19 +16,13 @@ import {
   Text,
   TextInput,
 } from '@components';
-import React from 'react';
 
-import {StackParamList} from '@routes';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {Controller, useForm} from 'react-hook-form';
-import {zodResolver} from '@hookform/resolvers/zod';
-import {LoginSchema, LoginSchemaType} from './LoginSchema';
-import {Alert} from 'react-native';
+import { LoginSchema, LoginSchemaType } from './LoginSchema';
 
 type ScreenProps = NativeStackScreenProps<StackParamList, 'LoginScreen'>;
 
-export function LoginScreen({navigation}: ScreenProps) {
-  const {control, formState, handleSubmit} = useForm<LoginSchemaType>({
+export function LoginScreen({ navigation }: ScreenProps) {
+  const { control, formState, handleSubmit } = useForm<LoginSchemaType>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
       email: '',
@@ -29,7 +31,7 @@ export function LoginScreen({navigation}: ScreenProps) {
     mode: 'onChange',
   });
 
-  function submitForm({email, password}: LoginSchemaType) {
+  function submitForm({ email, password }: LoginSchemaType) {
     Alert.alert(email, password);
   }
   return (
@@ -46,7 +48,7 @@ export function LoginScreen({navigation}: ScreenProps) {
           name="email"
           label="E-mail"
           placeholder="Digite seu e-mail"
-          boxProps={{mb: 's20'}}
+          boxProps={{ mb: 's20' }}
         />
         <FormTextInput
           control={control}
@@ -61,7 +63,8 @@ export function LoginScreen({navigation}: ScreenProps) {
           onPress={() => navigation.navigate('ForgotPasswordScreen')}
           color="primary"
           preset="paragraphSmall"
-          bold>
+          bold
+        >
           Esqueci minha senha
         </Text>
         <Button

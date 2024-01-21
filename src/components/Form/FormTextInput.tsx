@@ -1,5 +1,8 @@
-import {Controller, UseControllerProps, FieldValues} from 'react-hook-form';
-import {TextInput, TextInputProps} from '../TextInput/TextInput';
+import React from 'react';
+
+import { Controller, UseControllerProps, FieldValues } from 'react-hook-form';
+
+import { TextInput, TextInputProps } from '../TextInput/TextInput';
 
 export function FormTextInput<FormType extends FieldValues>({
   control,
@@ -12,7 +15,7 @@ export function FormTextInput<FormType extends FieldValues>({
       control={control}
       name={name}
       rules={rules}
-      render={({field, fieldState}) => (
+      render={({ field, fieldState }) => (
         <TextInput
           errorMessage={fieldState.error?.message}
           value={field.value}

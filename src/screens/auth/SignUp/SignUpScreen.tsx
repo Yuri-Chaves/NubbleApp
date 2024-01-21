@@ -1,3 +1,11 @@
+import React from 'react';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useResetNavigationSuccess } from '@hooks';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { StackParamList } from '@routes';
+import { useForm } from 'react-hook-form';
+
 import {
   Button,
   FormPasswordInput,
@@ -7,20 +15,15 @@ import {
   Text,
   TextInput,
 } from '@components';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import React from 'react';
-import {StackParamList} from '@routes';
-import {useResetNavigationSuccess} from '@hooks';
-import {useForm} from 'react-hook-form';
-import {zodResolver} from '@hookform/resolvers/zod';
-import {SignUpSchemaType, SignUpSchema} from './SignUpSchema';
+
+import { SignUpSchemaType, SignUpSchema } from './SignUpSchema';
 
 type ScreenProps = NativeStackScreenProps<StackParamList, 'SignUpScreen'>;
 
-export function SignUpScreen({navigation}: ScreenProps) {
-  const {reset} = useResetNavigationSuccess();
+export function SignUpScreen({ navigation }: ScreenProps) {
+  const { reset } = useResetNavigationSuccess();
 
-  const {control, formState, handleSubmit} = useForm<SignUpSchemaType>({
+  const { control, formState, handleSubmit } = useForm<SignUpSchemaType>({
     resolver: zodResolver(SignUpSchema),
     defaultValues: {
       email: '',
@@ -52,14 +55,14 @@ export function SignUpScreen({navigation}: ScreenProps) {
         name="userName"
         label="Seu username"
         placeholder="@"
-        boxProps={{mb: 's20'}}
+        boxProps={{ mb: 's20' }}
       />
       <FormTextInput
         control={control}
         name="fullName"
         label="Nome completo"
         placeholder="Digite seu nome completo"
-        boxProps={{mb: 's20'}}
+        boxProps={{ mb: 's20' }}
         autoCapitalize="words"
       />
       <FormTextInput
@@ -67,14 +70,14 @@ export function SignUpScreen({navigation}: ScreenProps) {
         name="email"
         label="E-mail"
         placeholder="Digite seu e-mail"
-        boxProps={{mb: 's20'}}
+        boxProps={{ mb: 's20' }}
       />
       <FormPasswordInput
         control={control}
         name="password"
         label="Senha"
         placeholder="Digite sua senha"
-        boxProps={{mb: 's48'}}
+        boxProps={{ mb: 's48' }}
       />
       <Button
         disabled={!formState.isValid}

@@ -1,10 +1,13 @@
-import {Button, FormTextInput, Screen, Text, TextInput} from '@components';
 import React from 'react';
-import {StackParamList} from '@routes';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {useResetNavigationSuccess} from '@hooks';
-import {zodResolver} from '@hookform/resolvers/zod';
-import {useForm} from 'react-hook-form';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useResetNavigationSuccess } from '@hooks';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { StackParamList } from '@routes';
+import { useForm } from 'react-hook-form';
+
+import { Button, FormTextInput, Screen, Text, TextInput } from '@components';
+
 import {
   ForgotPasswordSchema,
   ForgotPasswordSchemaType,
@@ -15,15 +18,16 @@ type ScreenProps = NativeStackScreenProps<
   'ForgotPasswordScreen'
 >;
 
-export function ForgotPasswordScreen({navigation}: ScreenProps) {
-  const {reset} = useResetNavigationSuccess();
-  const {control, formState, handleSubmit} = useForm<ForgotPasswordSchemaType>({
-    resolver: zodResolver(ForgotPasswordSchema),
-    defaultValues: {
-      email: '',
-    },
-    mode: 'onChange',
-  });
+export function ForgotPasswordScreen({ navigation }: ScreenProps) {
+  const { reset } = useResetNavigationSuccess();
+  const { control, formState, handleSubmit } =
+    useForm<ForgotPasswordSchemaType>({
+      resolver: zodResolver(ForgotPasswordSchema),
+      defaultValues: {
+        email: '',
+      },
+      mode: 'onChange',
+    });
   function submitForm() {
     // TODO:
     reset({
@@ -48,7 +52,7 @@ export function ForgotPasswordScreen({navigation}: ScreenProps) {
         name="email"
         label="E-mail"
         placeholder="Digite seu E-mail"
-        boxProps={{mb: 's40'}}
+        boxProps={{ mb: 's40' }}
       />
       <Button onPress={handleSubmit(submitForm)} title="Recuperar senha" />
     </Screen>

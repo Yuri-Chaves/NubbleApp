@@ -1,11 +1,17 @@
 import React from 'react';
-import {Box} from '../Box/Box';
-import {useAppSafeArea, useAppTheme} from '@hooks';
-import {Icon} from '../Icon/Icon';
-import {Text} from '../Text/Text';
-import {KeyboardAvoidingView, Platform, ScrollView} from 'react-native';
-import {ScrollViewContainer, ViewContainer} from './components/ScreenContainer';
-import {useNavigation} from '@react-navigation/native';
+import { KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
+
+import { useAppSafeArea, useAppTheme } from '@hooks';
+import { useNavigation } from '@react-navigation/native';
+
+import { Box } from '../Box/Box';
+import { Icon } from '../Icon/Icon';
+import { Text } from '../Text/Text';
+
+import {
+  ScrollViewContainer,
+  ViewContainer,
+} from './components/ScreenContainer';
 
 interface ScreenProps {
   children: React.ReactNode;
@@ -18,20 +24,22 @@ export function Screen({
   canGoBack = false,
   scrollable = false,
 }: ScreenProps) {
-  const {top, bottom} = useAppSafeArea();
-  const {colors} = useAppTheme();
+  const { top, bottom } = useAppSafeArea();
+  const { colors } = useAppTheme();
 
   const Container = scrollable ? ScrollViewContainer : ViewContainer;
 
   const navigation = useNavigation();
   return (
     <KeyboardAvoidingView
-      style={{flex: 1}}
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+      style={{ flex: 1 }}
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+    >
       <Container backgroundColor={colors.background}>
         <Box
           paddingHorizontal="s24"
-          style={{paddingTop: top, paddingBottom: bottom}}>
+          style={{ paddingTop: top, paddingBottom: bottom }}
+        >
           {canGoBack && (
             <Box mb="s24" flexDirection="row">
               <Icon

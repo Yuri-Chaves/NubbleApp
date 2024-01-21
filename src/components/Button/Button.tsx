@@ -1,7 +1,13 @@
 import React from 'react';
-import {ActivityIndicator} from 'react-native';
-import { Text, ThouchableHighlightBox, TouchableHighlightProps} from '@components';
-import {buttonPressets} from './buttonPressets';
+import { ActivityIndicator } from 'react-native';
+
+import {
+  Text,
+  ThouchableHighlightBox,
+  TouchableHighlightProps,
+} from '@components';
+
+import { buttonPressets } from './buttonPressets';
 
 interface ButtonProps extends TouchableHighlightProps {
   title: string;
@@ -30,7 +36,8 @@ export function Button({
       justifyContent="center"
       borderRadius="s16"
       {...buttonPresset.container}
-      {...touchableHighlightProps}>
+      {...touchableHighlightProps}
+    >
       {loading ? (
         <ActivityIndicator color={buttonPresset.content} />
       ) : (

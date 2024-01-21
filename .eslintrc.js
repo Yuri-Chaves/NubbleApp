@@ -13,11 +13,12 @@ module.exports = {
         'prettier/prettier': [
           'error',
           {
-            semi: false,
+            arrowParens: 'always', //avoid
+            bracketSpacing: true, // false
             singleQuote: true,
-            trailingComma: 'all',
-            bracketSpacing: true,
-            arrowParens: 'always',
+            trailingComma: 'es5',
+            endOfLine: 'auto',
+            semi: true, // true
           },
         ],
         'import/order': [
