@@ -1,6 +1,6 @@
 import {
-  TouchableHighlight,
-  TouchableHighlightProps as RNTouchableHighlightProps,
+  TouchableOpacity,
+  TouchableOpacityProps as RNTouchableOpacityProps,
 } from 'react-native';
 
 import {
@@ -27,12 +27,12 @@ export type TouchableHighlightProps = BackgroundColorProps<Theme> &
   LayoutProps<Theme> &
   BorderProps<Theme> &
   SpacingShorthandProps<Theme> &
-  RNTouchableHighlightProps;
+  RNTouchableOpacityProps;
 
-export const ThouchableHighlightBox = createRestyleComponent<
+export const ThouchableBox = createRestyleComponent<
   TouchableHighlightProps,
   Theme
 >(
   [backgroundColor, spacing, spacingShorthand, layout, border],
-  TouchableHighlight
+  TouchableOpacity
 );

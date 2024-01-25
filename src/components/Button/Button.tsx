@@ -1,11 +1,7 @@
 import React from 'react';
 import { ActivityIndicator } from 'react-native';
 
-import {
-  Text,
-  ThouchableHighlightBox,
-  TouchableHighlightProps,
-} from '@components';
+import { Text, ThouchableBox, TouchableHighlightProps } from '@components';
 
 import { buttonPressets } from './buttonPressets';
 
@@ -28,7 +24,7 @@ export function Button({
   const buttonPresset =
     buttonPressets[presset][disabled ? 'disabled' : 'default'];
   return (
-    <ThouchableHighlightBox
+    <ThouchableBox
       disabled={disabled || loading}
       paddingHorizontal="s20"
       height={50}
@@ -45,6 +41,6 @@ export function Button({
           {title}
         </Text>
       )}
-    </ThouchableHighlightBox>
+    </ThouchableBox>
   );
 }
