@@ -8,7 +8,9 @@
       "@theme": ["src/theme"],
       "@icons": ["src/assets/icons"],
       "@screens": ["src/screens"],
-      "@routes": ["src/routes"]
+      "@routes": ["src/routes"],
+      "@domain": ["src/domain"],
+      "@brand": ["src/brand"]
     }
   }
 }

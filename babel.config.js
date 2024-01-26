@@ -12,6 +12,8 @@ module.exports = {
           '@icons': './src/assets/icons',
           '@screens': './src/screens',
           '@routes': './src/routes',
+          '@domain': './src/domain',
+          '@brand': './src/brand',
         },
       },
     ],
