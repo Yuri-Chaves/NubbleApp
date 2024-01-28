@@ -11,3 +11,35 @@ export interface Post {
   commentCount: number;
   favoriteCount: number;
 }
+
+export interface PostAPI {
+  id: number; // 1,
+  text: string; // "Bom dia!",
+  user_id: number; // 1,
+  image_url: string; // "https://nubble-development.s3.sa-east-1.amazonaws.com/backend-integration/post1.jpg",
+  is_fixed: boolean; // false,
+  is_activated: boolean; // true,
+  created_at: string; // "2024-01-26T22:27:31.066-03:00",
+  updated_at: string; // "2024-01-26T22:27:31.069-03:00",
+  user: {
+    id: number; // 1,
+    first_name: string; // "Maria",
+    last_name: string; // "Julia",
+    username: string; // "mariajulia",
+    email: string; // "mariajulia@coffstack.com",
+    profile_url: string; // "https://nubble-development.s3.sa-east-1.amazonaws.com/backend-integration/1-maria.png",
+    is_online: boolean; // false,
+    full_name: string; // "Maria Julia"
+  };
+  status: string; // "published",
+  meta: {
+    like_count: string; // "6",
+    favorite_count: string; // "0",
+    comments_count: string; // "6"
+  };
+}
+
+export interface PageParams {
+  page?: number;
+  per_page?: number;
+}
