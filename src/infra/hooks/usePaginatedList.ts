@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 
-import { postService } from '../postService';
-import { Post } from '../postTypes';
+import { Page } from '@types';
 
-export function usePostList() {
+export function usePaginatedList<Data>(
+  getList: (page: number) => Promise<Page<Data>>
+) {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean | null>(null);
-  const [postList, setPostList] = useState<Post[]>([]);
+  const [list, setList] = useState<Data[]>([]);
   const [page, setPage] = useState(1);
   const [hasNextPage, setHasNextPage] = useState<boolean>(true);
 
@@ -14,8 +15,8 @@ export function usePostList() {
     try {
       setError(null);
       setLoading(true);
-      const { data, meta } = await postService.getList(1);
-      setPostList(data);
+      const { data, meta } = await getList(1);
+      setList(data);
       if (meta.hasNextPage) {
         setPage(2);
         setHasNextPage(true);
@@ -36,8 +37,8 @@ export function usePostList() {
     try {
       setError(null);
       setLoading(true);
-      const { data, meta } = await postService.getList(page);
-      setPostList((prev) => [...prev, ...data]);
+      const { data, meta } = await getList(page);
+      setList((prev) => [...prev, ...data]);
       if (meta.hasNextPage) {
         setPage((prev) => prev + 1);
       } else {
@@ -52,13 +53,15 @@ export function usePostList() {
 
   useEffect(() => {
     fetchInitialData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return {
-    postList,
+    list,
     error,
     loading,
     refresh: fetchInitialData,
     fetchNextPage,
+    hasNextPage,
   };
 }

@@ -1,7 +1,8 @@
 export interface Post {
-  id: string;
+  id: number;
   text: string;
   author: {
+    id: number;
     profileURL: string;
     name: string;
     userName: string;
@@ -37,9 +38,4 @@ export interface PostAPI {
     favorite_count: string; // "0",
     comments_count: string; // "6"
   };
-}
-
-export interface PageParams {
-  page?: number;
-  per_page?: number;
 }

@@ -19,7 +19,13 @@ export function HomeScreen({
   navigation,
   route,
 }: AppTabScreenProps<'HomeScreen'>) {
-  const { error, loading, postList, refresh, fetchNextPage } = usePostList();
+  const {
+    error,
+    loading,
+    list: postList,
+    refresh,
+    fetchNextPage,
+  } = usePostList();
 
   const flatListRef = useRef<FlatList<Post>>(null);
 
@@ -35,7 +41,7 @@ export function HomeScreen({
         ref={flatListRef}
         showsVerticalScrollIndicator={false}
         data={postList}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.id.toString()}
         renderItem={renderItem}
         // eslint-disable-next-line react-native/no-inline-styles
         contentContainerStyle={{ flex: postList.length === 0 ? 1 : undefined }}

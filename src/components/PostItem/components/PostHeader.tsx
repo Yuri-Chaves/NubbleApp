@@ -3,18 +3,14 @@ import { Image } from 'react-native';
 
 import { Post } from '@domain';
 
-import { Box, Text } from '@components';
+import { Box, ProfileAvatar, Text } from '@components';
 
 type Props = Pick<Post, 'author'>;
 
 export function PostHeader({ author }: Props) {
   return (
     <Box flexDirection="row" alignItems="center" mb="s16">
-      <Image
-        source={{ uri: author.profileURL }}
-        // eslint-disable-next-line react-native/no-inline-styles
-        style={{ width: 32, height: 32, borderRadius: 14 }}
-      />
+      <ProfileAvatar imageUrl={author.profileURL} />
       <Text ml="s12" semiBold preset="paragraphMedium">
         {author.userName}
       </Text>

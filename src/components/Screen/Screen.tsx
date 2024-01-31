@@ -1,28 +1,24 @@
 import React from 'react';
-import { KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
+import { KeyboardAvoidingView, Platform } from 'react-native';
 
 import { useAppSafeArea, useAppTheme } from '@hooks';
-import { useNavigation } from '@react-navigation/native';
 
 import { Box, BoxProps } from '../Box/Box';
-import { Icon } from '../Icon/Icon';
-import { Text } from '../Text/Text';
 
-import {
-  ScrollViewContainer,
-  ViewContainer,
-} from './components/ScreenContainer';
+import { ScrollViewContainer, ViewContainer, ScreenHeader } from './components';
 
-interface ScreenProps extends BoxProps {
+export interface ScreenProps extends BoxProps {
   children: React.ReactNode;
   canGoBack?: boolean;
   scrollable?: boolean;
+  title?: string;
 }
 
 export function Screen({
   children,
   canGoBack = false,
   scrollable = false,
+  title,
   style,
   ...boxProps
 }: ScreenProps) {
@@ -30,8 +26,6 @@ export function Screen({
   const { colors } = useAppTheme();
 
   const Container = scrollable ? ScrollViewContainer : ViewContainer;
-
-  const navigation = useNavigation();
   return (
     <KeyboardAvoidingView
       // eslint-disable-next-line react-native/no-inline-styles
@@ -44,18 +38,7 @@ export function Screen({
           style={[{ paddingTop: top, paddingBottom: bottom }, style]}
           {...boxProps}
         >
-          {canGoBack && (
-            <Box mb="s24" flexDirection="row">
-              <Icon
-                onPress={navigation.goBack}
-                name="arrowLeft"
-                color="primary"
-              />
-              <Text preset="paragraphMedium" semiBold ml="s8">
-                Voltar
-              </Text>
-            </Box>
-          )}
+          {canGoBack && <ScreenHeader title={title} />}
           {children}
         </Box>
       </Container>

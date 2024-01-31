@@ -6,6 +6,8 @@ export * from './Form/FormTextInput';
 export * from './Icon/Icon';
 export * from './Text/Text';
 export * from './TextInput/TextInput';
+export * from './ProfileAvatar/ProfileAvatar';
 export * from './Screen/Screen';
 export * from './PasswordInput/PasswordInput';
 export * from './PostItem/PostItem';
+export * from './TextMessage/TextMessage';
