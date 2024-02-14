@@ -11,3 +11,4 @@ export * from './Screen/Screen';
 export * from './PasswordInput/PasswordInput';
 export * from './PostItem/PostItem';
 export * from './TextMessage/TextMessage';
+export * from './Toast/Toast';

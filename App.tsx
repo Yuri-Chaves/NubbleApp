@@ -7,9 +7,12 @@
 
 import React from 'react';
 
+import { ToastProvider } from '@services';
 import { ThemeProvider } from '@shopify/restyle';
 import { theme } from '@theme';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+
+import { Toast } from '@components';
 
 import { Router } from './src/routes/Router';
 import { LoginScreen } from './src/screens/auth/Login/LoginScreen';
@@ -18,7 +21,10 @@ function App(): JSX.Element {
   return (
     <SafeAreaProvider>
       <ThemeProvider theme={theme}>
-        <Router />
+        <ToastProvider>
+          <Toast />
+          <Router />
+        </ToastProvider>
       </ThemeProvider>
     </SafeAreaProvider>
   );
