@@ -21,14 +21,13 @@ export function PostCommentScreen({
   const { bottom } = useAppSafeArea();
   const postId = route.params.postId;
   const postAuthorId = route.params.postAuthorId;
-  const { list, fetchNextPage, hasNextPage, refresh } =
-    usePostCommentList(postId);
+  const { list, fetchNextPage, hasNextPage } = usePostCommentList(postId);
 
   function renderItem({ item }: ListRenderItemInfo<PostComment>) {
     return (
       <PostCommentItem
+        postId={postId}
         postComment={item}
-        onRemoveComment={refresh}
         useId={id}
         postAuthorId={postAuthorId}
       />
@@ -50,10 +49,7 @@ export function PostCommentScreen({
           }
           contentContainerStyle={{ paddingBottom: bottom + 12 }}
         />
-        <PostCommentTextMessage
-          onAddComment={refresh}
-          postId={route.params.postId}
-        />
+        <PostCommentTextMessage postId={route.params.postId} />
       </Box>
     </Screen>
   );

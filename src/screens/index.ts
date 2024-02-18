@@ -1,6 +1,7 @@
 // App Stack
 export * from './app/SettingsScreen/SettingsScreen';
 export * from './app/PostCommentScreen/PostCommentScreen';
+export * from './app/ProfileScreen/ProfileScreen';
 
 // Tab Navigator
 export * from './app/FavoriteScreen/FavoriteScreen';
