@@ -1,8 +1,10 @@
 import React from 'react';
 import { Alert } from 'react-native';
 
+import { useAuthSignIn } from '@domain';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { AuthScreenProps } from '@routes';
+import { useToastService } from '@services';
 import { useForm } from 'react-hook-form';
 
 import { Box, Button, FormTextInput, Screen, Text } from '@components';
@@ -10,6 +12,10 @@ import { Box, Button, FormTextInput, Screen, Text } from '@components';
 import { LoginSchema, LoginSchemaType } from './LoginSchema';
 
 export function LoginScreen({ navigation }: AuthScreenProps<'LoginScreen'>) {
+  const { showToast } = useToastService();
+  const { isLoading, signIn } = useAuthSignIn({
+    onError: (message) => showToast({ message, type: 'error' }),
+  });
   const { control, formState, handleSubmit } = useForm<LoginSchemaType>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
@@ -20,7 +26,7 @@ export function LoginScreen({ navigation }: AuthScreenProps<'LoginScreen'>) {
   });
 
   function submitForm({ email, password }: LoginSchemaType) {
-    Alert.alert(email, password);
+    signIn({ email, password });
   }
   return (
     <Screen>
@@ -57,6 +63,7 @@ export function LoginScreen({ navigation }: AuthScreenProps<'LoginScreen'>) {
         </Text>
         <Button
           title="Entrar"
+          loading={isLoading}
           mt="s48"
           disabled={!formState.isValid}
           onPress={handleSubmit(submitForm)}

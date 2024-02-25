@@ -15,7 +15,7 @@ export function usePostCommentCreate(
 ) {
   const queryClient = useQueryClient();
 
-  const { mutate, isError, isIdle } = useMutation<
+  const { mutate, isError, isPending } = useMutation<
     PostComment,
     unknown,
     { message: string }
@@ -41,7 +41,7 @@ export function usePostCommentCreate(
   }
 
   return {
-    loading: isIdle,
+    loading: isPending,
     isError,
     createComment,
   };

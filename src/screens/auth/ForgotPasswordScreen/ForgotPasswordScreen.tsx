@@ -1,8 +1,10 @@
 import React from 'react';
 
+import { useAuthRequestNewPassword } from '@domain';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useResetNavigationSuccess } from '@hooks';
-import { AuthScreenProps } from '@routes';
+import { AuthScreenProps, AuthStackParamList } from '@routes';
+import { useToastService } from '@services';
 import { useForm } from 'react-hook-form';
 
 import { Button, FormTextInput, Screen, Text } from '@components';
@@ -12,10 +14,27 @@ import {
   ForgotPasswordSchemaType,
 } from './ForgotPasswordSchema';
 
+const resetParam: AuthStackParamList['SuccessScreen'] = {
+  title: 'E-mail de recuperação enviado!',
+  description: 'Clique no link no seu e-mail para recuperar sua senha',
+  icon: {
+    name: 'messageRound',
+    color: 'greenPrimary',
+  },
+};
+
 export function ForgotPasswordScreen({
   navigation,
 }: AuthScreenProps<'ForgotPasswordScreen'>) {
   const { reset } = useResetNavigationSuccess();
+
+  const { showToast } = useToastService();
+
+  const { isLoading, requestPassword } = useAuthRequestNewPassword({
+    onSuccess: () => reset(resetParam),
+    onError: (error) => showToast({ message: error, type: 'error' }),
+  });
+
   const { control, formState, handleSubmit } =
     useForm<ForgotPasswordSchemaType>({
       resolver: zodResolver(ForgotPasswordSchema),
@@ -24,17 +43,11 @@ export function ForgotPasswordScreen({
       },
       mode: 'onChange',
     });
-  function submitForm() {
-    // TODO:
-    reset({
-      title: 'E-mail de recuperação enviado!',
-      description: 'Clique no link no seu e-mail para recuperar sua senha',
-      icon: {
-        name: 'messageRound',
-        color: 'greenPrimary',
-      },
-    });
+
+  function submitForm(values: ForgotPasswordSchemaType) {
+    requestPassword(values.email);
   }
+
   return (
     <Screen canGoBack>
       <Text preset="headingLarge" mb="s16">
@@ -50,7 +63,11 @@ export function ForgotPasswordScreen({
         placeholder="Digite seu E-mail"
         boxProps={{ mb: 's40' }}
       />
-      <Button onPress={handleSubmit(submitForm)} title="Recuperar senha" />
+      <Button
+        loading={isLoading}
+        onPress={handleSubmit(submitForm)}
+        title="Recuperar senha"
+      />
     </Screen>
   );
 }
