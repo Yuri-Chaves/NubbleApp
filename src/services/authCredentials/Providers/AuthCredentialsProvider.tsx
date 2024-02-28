@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { PropsWithChildren, createContext, useState } from 'react';
 
+import { registerInterceptor } from '@api';
 import { AuthCredentials, authService } from '@domain';
 
 import { authCredentialsStorage } from '../authCredentialsStorage';
@@ -46,6 +47,16 @@ export function AuthCredentialsProvider({ children }: PropsWithChildren<{}>) {
   useEffect(() => {
     initializeAuthCredentials();
   }, []);
+
+  useEffect(() => {
+    const interceptor = registerInterceptor({
+      authCredentials,
+      removeCredentials,
+      saveCredentials,
+    });
+
+    return interceptor;
+  }, [authCredentials]);
 
   return (
     <AuthCredentialsContext.Provider
