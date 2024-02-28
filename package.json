@@ -8,6 +8,8 @@
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
+    "verbose": "jest --verbose",
+    "coverage": "jest --coverage",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -39,6 +41,7 @@
     "@react-native/metro-config": "^0.72.11",
     "@tanstack/eslint-plugin-query": "^5.20.1",
     "@tsconfig/react-native": "^3.0.0",
+    "@types/jest": "^29.5.12",
     "@types/react": "^18.0.24",
     "@types/react-test-renderer": "^18.0.0",
     "babel-jest": "^29.2.1",
