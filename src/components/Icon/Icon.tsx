@@ -58,7 +58,7 @@ export function Icon({
   const SVCIcon = iconRegistry[name];
   if (onPress) {
     return (
-      <Pressable onPress={onPress} hitSlop={10}>
+      <Pressable testID={name} onPress={onPress} hitSlop={10}>
         <SVCIcon size={size} color={colors[color]} />
       </Pressable>
     );

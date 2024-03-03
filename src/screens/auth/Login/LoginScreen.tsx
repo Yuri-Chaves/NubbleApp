@@ -7,7 +7,14 @@ import { AuthScreenProps } from '@routes';
 import { useToastService } from '@services';
 import { useForm } from 'react-hook-form';
 
-import { Box, Button, FormTextInput, Screen, Text } from '@components';
+import {
+  Box,
+  Button,
+  FormPasswordInput,
+  FormTextInput,
+  Screen,
+  Text,
+} from '@components';
 
 import { LoginSchema, LoginSchemaType } from './LoginSchema';
 
@@ -44,7 +51,7 @@ export function LoginScreen({ navigation }: AuthScreenProps<'LoginScreen'>) {
           placeholder="Digite seu e-mail"
           boxProps={{ mb: 's20' }}
         />
-        <FormTextInput
+        <FormPasswordInput
           control={control}
           name="password"
           label="Senha"

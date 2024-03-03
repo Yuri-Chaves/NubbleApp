@@ -5,7 +5,7 @@ import { Text, ThouchableBox, TouchableHighlightProps } from '@components';
 
 import { buttonPressets } from './buttonPressets';
 
-interface ButtonProps extends TouchableHighlightProps {
+export interface ButtonProps extends TouchableHighlightProps {
   title: string;
   loading?: boolean;
   presset?: ButtonPresset;
@@ -25,6 +25,7 @@ export function Button({
     buttonPressets[presset][disabled ? 'disabled' : 'default'];
   return (
     <ThouchableBox
+      testID="button"
       disabled={disabled || loading}
       paddingHorizontal="s20"
       height={50}
@@ -35,7 +36,10 @@ export function Button({
       {...touchableHighlightProps}
     >
       {loading ? (
-        <ActivityIndicator color={buttonPresset.content} />
+        <ActivityIndicator
+          testID="activity-indicator"
+          color={buttonPresset.content}
+        />
       ) : (
         <Text preset="paragraphMedium" bold color={buttonPresset.content}>
           {title}
