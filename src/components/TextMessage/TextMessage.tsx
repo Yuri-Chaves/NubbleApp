@@ -48,6 +48,7 @@ export function TextMessage({
           {...rNtextInput}
         />
         <Pressable
+          testID="text-message-enviar"
           disabled={sendIsDisabled}
           onPress={() => onPressSend(value || '')}
         >
