@@ -1,10 +1,10 @@
 import { ThemeColors } from '../../theme/theme';
-import { TouchableHighlightProps } from '../Box/Box';
+import { TouchableOpacityBoxProps } from '../Box/Box';
 
 import { ButtonPresset } from './Button';
 
 interface ButtonUI {
-  container: TouchableHighlightProps;
+  container: TouchableOpacityBoxProps;
   content: ThemeColors;
 }
 

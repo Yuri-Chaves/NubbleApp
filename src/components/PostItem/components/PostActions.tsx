@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Post } from '@domain';
 
-import { Box, Icon, IconProps, Text, ThouchableBox } from '@components';
+import { Box, Icon, IconProps, Text, TouchableBox } from '@components';
 
 type Props = Pick<Post, 'commentCount' | 'favoriteCount' | 'reactionCount'>;
 
@@ -59,7 +59,7 @@ interface ItemProps {
 }
 function Item({ icon, onPress, text, marked }: ItemProps) {
   return (
-    <ThouchableBox
+    <TouchableBox
       marginRight="s24"
       flexDirection="row"
       alignContent="center"
@@ -74,6 +74,6 @@ function Item({ icon, onPress, text, marked }: ItemProps) {
           {text}
         </Text>
       )}
-    </ThouchableBox>
+    </TouchableBox>
   );
 }

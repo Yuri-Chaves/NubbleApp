@@ -7,6 +7,7 @@ export * from './Icon/Icon';
 export * from './Text/Text';
 export * from './TextInput/TextInput';
 export * from './ProfileAvatar/ProfileAvatar';
+export * from './ProfileUser/ProfileUser';
 export * from './Screen/Screen';
 export * from './PasswordInput/PasswordInput';
 export * from './PostItem/PostItem';

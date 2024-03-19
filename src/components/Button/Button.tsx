@@ -1,11 +1,11 @@
 import React from 'react';
 import { ActivityIndicator } from 'react-native';
 
-import { Text, ThouchableBox, TouchableHighlightProps } from '@components';
+import { Text, TouchableBox, TouchableOpacityBoxProps } from '@components';
 
 import { buttonPressets } from './buttonPressets';
 
-export interface ButtonProps extends TouchableHighlightProps {
+export interface ButtonProps extends TouchableOpacityBoxProps {
   title: string;
   loading?: boolean;
   presset?: ButtonPresset;
@@ -24,7 +24,7 @@ export function Button({
   const buttonPresset =
     buttonPressets[presset][disabled ? 'disabled' : 'default'];
   return (
-    <ThouchableBox
+    <TouchableBox
       testID="button"
       disabled={disabled || loading}
       paddingHorizontal="s20"
@@ -45,6 +45,6 @@ export function Button({
           {title}
         </Text>
       )}
-    </ThouchableBox>
+    </TouchableBox>
   );
 }

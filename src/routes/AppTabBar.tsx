@@ -11,8 +11,8 @@ import {
   Icon,
   Text,
   TextProps,
-  ThouchableBox,
-  TouchableHighlightProps,
+  TouchableBox,
+  TouchableOpacityBoxProps,
 } from '@components';
 
 import { AppTabBottomTabParamList } from './AppTabNavigator';
@@ -58,7 +58,7 @@ export function AppTabBar({
         };
 
         return (
-          <ThouchableBox
+          <TouchableBox
             {...$itemWrapper}
             key={index}
             accessibilityState={isFocused ? { selected: true } : {}}
@@ -77,7 +77,7 @@ export function AppTabBar({
             >
               {tabItem.label}
             </Text>
-          </ThouchableBox>
+          </TouchableBox>
         );
       })}
     </Box>
@@ -90,7 +90,7 @@ const $label: TextProps = {
   preset: 'paragraphCaption',
 };
 
-const $itemWrapper: TouchableHighlightProps = {
+const $itemWrapper: TouchableOpacityBoxProps = {
   activeOpacity: 1,
   alignItems: 'center',
   accessibilityRole: 'button',
